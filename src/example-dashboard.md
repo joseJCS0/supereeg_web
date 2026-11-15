@@ -61,7 +61,7 @@ function flagInside(electrodes, mesh) {
 }
 
 // Persistent 3D view — one canvas shared between renderer and controls.
-function makeBrainView(mesh, {width = 520, height = 480, domain = [-0.8, 0.8]} = {}) {
+function makeBrainView(mesh, {width = 490, height = 480, domain = [-0.8, 0.8]} = {}) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);
   scene.add(mesh.clone());
@@ -126,35 +126,46 @@ function makeBrainView(mesh, {width = 520, height = 480, domain = [-0.8, 0.8]} =
 function makeDistPlots(data, {xDomain = [-0.4, 1], label = "Correlation", colorDomain = [-0.8, 0.8], yMax = 0.12} = {}) {
   const colorOpts = {type: "sequential", scheme: "Viridis", domain: colorDomain, label};
 
+  const v = data.map(d => d.value).filter(Number.isFinite);
+  const med = d3.median(v);
+  const medianRule = () => Number.isFinite(med)
+    ? Plot.ruleX([med], {stroke: "white", strokeWidth: 2, strokeDasharray: "4,3"})
+    : null;
+
   const hist = Plot.plot({
-    width: 420, height: 300, marginLeft: 50, marginRight: 20, marginBottom: 20, marginTop: 20,
+    width: 420, height: 400, marginLeft: 50, marginRight: 20, marginBottom: 20, marginTop: 30,
     x: {domain: xDomain, label: null},
     y: {label: "Proportion", grid: true, domain: [0, yMax]},
     color: colorOpts,
     marks: [
       Plot.rectY(data, Plot.binX({y: "proportion", fill: "mean"}, {x: "value", fill: "value", thresholds: 40})),
-      Plot.ruleX([0], {stroke: "black", strokeDasharray: "3,3"}),
+      medianRule(),
       Plot.ruleY([0])
     ]
   });
 
   const box = Plot.plot({
-    width: 420, height: 90, marginTop: 0, marginLeft: 50, marginRight: 20,
+    width: 420, height: 90, marginTop: 0, marginBottom: 40, marginLeft: 50, marginRight: 20,
     x: {domain: xDomain, label, grid: true},
     y: {axis: null},
     marks: [
-      Plot.boxX(data, {x: "value", stroke: "#444", fill: "#ddd"}),
-      Plot.ruleX([0], {stroke: "black", strokeDasharray: "3,3"})
+      Plot.boxX(data, {x: "value", stroke: "#807f7f", fill: "#ddd"})
     ]
   });
 
-  const colorbar = Plot.legend({color: colorOpts, width: 320, ticks: 5});
+  const colorbar = Plot.legend({color: colorOpts, width: 400, ticks: 5});
 
+  
+
+  // Summary statistics for the displayed electrodes
+  const vals = data.map(d => d.value).filter(Number.isFinite);
+  const f = x => x == null || isNaN(x) ? "–" : x.toFixed(3);
+  const stats = `mean = ${f(d3.mean(vals))} · median = ${f(d3.median(vals))} · SD = ${f(d3.deviation(vals))} · variance = ${f(d3.variance(vals))}`;
   const title = html`<div>
-    <div style="font-size:16px;font-weight:bold">Distribution of Electrode Reconstruction ${label}s</div>
-    <div style="font-size:12px;color:#666">Share of electrodes per bin (n = ${data.length})</div>
+    <div style="font-size:16px;font-weight:bold">Distribution of electrode ${label.toLowerCase()}s</div>
+    <div style="font-size:12px;color:#666">Share of electrodes per bin (n = ${vals.length})</div>
+    <div style="font-size:12px;color:#666">${stats}</div>
   </div>`;
-
   return {title, plots: html`<div>${hist}${box}</div>`, colorbar};
 }
 
