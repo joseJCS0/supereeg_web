@@ -223,7 +223,9 @@ const registry = {
   "recon_results_task-speech_motifsubs_motifFalse.json": FileAttachment("data/json_recon_data/recon_results_task-speech_motifsubs_motifFalse.json"),
   "recon_results_task-speech_motifsubs_motifTrue.json": FileAttachment("data/json_recon_data/recon_results_task-speech_motifsubs_motifTrue.json"),
   "recon_results_task-speech_motifsubs_wac_motifFalse.json": FileAttachment("data/json_recon_data/recon_results_task-speech_motifsubs_wac_motifFalse.json"),
-  "recon_results_task-speech_motifsubs_wac_motifTrue.json": FileAttachment("data/json_recon_data/recon_results_task-speech_motifsubs_wac_motifTrue.json")
+  "recon_results_task-speech_motifsubs_wac_motifTrue.json": FileAttachment("data/json_recon_data/recon_results_task-speech_motifsubs_wac_motifTrue.json"),
+  "recon_results_task-music_motifsubs_wac_motifFalse.json": FileAttachment("data/json_recon_data/recon_results_task-music_motifsubs_wac_motifFalse.json"),
+  "recon_results_task-music_motifsubs_wac_motifTrue.json": FileAttachment("data/json_recon_data/recon_results_task-music_motifsubs_wac_motifTrue.json")
 };
 
 const tokens = {
@@ -350,6 +352,6 @@ redraw();
 ```
 <center>
   <span style="font-size: 0.6em;">
-    <font color="grey">Figure # displayes reconstruction of electrodes and how they correlate to their emperical values. WAC is within across combination which is represented by the acorss model when the WAC option is selected.</font>
+    <font color="grey">Figure # displayes reconstruction of electrodes and how they correlate to their emperical values. WAC is within across combination which is represented by the acorss model when the WAC option is selected. Motif EEG refers to both EEG, ECoG, and iEEG.</font>
   </span>
 </center>
