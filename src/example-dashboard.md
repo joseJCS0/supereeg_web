@@ -236,7 +236,8 @@ const registry = {
   "recon_results_task-speech_motifsubs_wac_motifFalse.json": FileAttachment("data/json_recon_data/recon_results_task-speech_motifsubs_wac_motifFalse.json"),
   "recon_results_task-speech_motifsubs_wac_motifTrue.json": FileAttachment("data/json_recon_data/recon_results_task-speech_motifsubs_wac_motifTrue.json"),
   "recon_results_task-music_motifsubs_wac_motifFalse.json": FileAttachment("data/json_recon_data/recon_results_task-music_motifsubs_wac_motifFalse.json"),
-  "recon_results_task-music_motifsubs_wac_motifTrue.json": FileAttachment("data/json_recon_data/recon_results_task-music_motifsubs_wac_motifTrue.json")
+  "recon_results_task-music_motifsubs_wac_motifTrue.json": FileAttachment("data/json_recon_data/recon_results_task-music_motifsubs_wac_motifTrue.json"),
+  "recon_results_task-music_motifsubs_wac_fmriOnly.json": FileAttachment("data/json_recon_data/recon_results_task-music_motifsubs_wac_fmriOnly.json"),
 };
 
 const tokens = {

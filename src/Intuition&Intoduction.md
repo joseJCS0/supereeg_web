@@ -33,7 +33,7 @@ display(html`<figure style="margin: 1rem 0; max-width: 600px;">
 ```
 
 ## Methods
-Main methdology used to make and test the model is similar to that seen within Lucy L W Owens 
+To test the effectiveness of the model, a pipeline was constructed to compare voltage reconstructions to empirical values from specific electrode locations. This pipeline originated from the write-up by Owen and her team but was revamped for the changes shown in this framework.
 
 
 
